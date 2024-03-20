@@ -1,7 +1,7 @@
 # Format and Disk Space Commands
 
 ## Disk Formatting and Partitioning in Linux
-From the beginning:
+#### From the beginning:
 - Started with `fdisk`, and has been updated since for Linux
 	- Now supports GUID Partition Table (GPT) format for larger disks etc.
 After some evolution..:
@@ -12,7 +12,7 @@ Days of cloud storage & virtualization:
 - Enabled use of virtual disks
 - Tools like Amazon's Elastic Block Store (EBS) are made to attach virtual disks to instances
 
-Types of partitions:
+#### Types of partitions:
 1. Primary Partition
 	1. Basic partition
 	2. Can be used to boot OS from
@@ -27,10 +27,40 @@ Types of partitions:
 
 Why even make partitions?
 - Managing data in case data failure, data loss, OS corruption, etc.
+	- Organize data into logical units
+- Reduce disk fragmentation for HDD
+	- Improves performance
+- Isolating sensitive data on separate (secured) partitions
+	- Improves security
 #note maybe in the future consider making partition for backups?
 ## Steps to Create Partition
+General steps:
+1. Identify physical drive
+	1. Can use `fdisk`,`lsblk`,`df`,`du`commands
+2. Decide on size and location of partition
+	1. Can use `fdisk` command
+3. Format the filesystem
+	1. Can use `mkfs` command
+4. Mount the partition
+
+Example of selecting drive, clearing partition, and making new one:
+1. `lsblk` --> Checks available devices
+	1. We'll use `/dev/sdb` from here on
+2. `fdisk -l /dev/sdb` --> Opens fdisk utility for `/dev/sdb`
+	1. `p` "Print" or display information about the selected drive
+	2. `d` "Delete" the selected partition (we want to start fresh)
+	3. `w` "Write" the changes onto the disk
+3. `lsblk` --> Check drives again, making sure the partition is actually deleted
+4. `fdisk /dev/sdb` --> Select the drive again
+	1. `n` Creates "New" partition
+		1. Here can choose either `p` ([[Chapter-4#Types of partitions|primary]]) or `e` ([[Chapter-4#Types of partitions|extended]])
+	2. Then prompted to select amount of partitions (1-4)
+	3. Then asked to remove signature (?)
+	4. `w` To "write" changes on the disk
+5. `fdisk -l /dev/sdb` and `lsblk` to verify changes
+6. Done!
 
 
-
+#note The choices for `fdisk` utility are [[fdisk commands|here]]
 ## fdisk, lsblk, df, and du
 #### fdisk
