@@ -189,8 +189,10 @@
   },
   "active": "75675a34c15f4c5e",
   "lastOpenFiles": [
-    "fdisk commands.md",
+    "Chapter-1.md",
+    "Chapter-2.md",
     "Chapter-4.md",
+    "fdisk commands.md",
     "Chapter-3.md",
     "test-dir.tar.bz2",
     "test_dir2/test-dir/test2.txt",
@@ -202,8 +204,6 @@
     "test-dir/test.txt",
     "test-dir",
     "test-dir.tar.gz",
-    "Chapter-2.md",
-    "Chapter-1.md",
     "README.md"
   ]
 }
