@@ -1,0 +1,3 @@
+[submodule ".obsidian"]
+	path = .obsidian
+	url = https://github.com/andra-putra/tob-obsidian-config.git
