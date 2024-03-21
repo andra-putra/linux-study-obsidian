@@ -64,3 +64,12 @@ Example of selecting drive, clearing partition, and making new one:
 #note The choices for `fdisk` utility are [[fdisk commands|here]]
 ## fdisk, lsblk, df, and du
 #### fdisk
+Used to manage disk partitions
+- Create partition tables
+- Modify partition tables
+- Delete partition tables
+- etc.
+
+Common command:
+`fdisk -l` Lists partitions 
+

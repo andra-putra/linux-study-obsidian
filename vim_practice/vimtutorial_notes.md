@@ -1,4 +1,5 @@
 # New things learned so far:
+```
 I - Enter at beginning of line
 A - Enter at end of line
 O - Enter above current line
@@ -42,6 +43,7 @@ gcc - Comment out line
 # To make changes permanent:
 Change ~/.vimrc (note: doesn't work for nvim, use ~/.config/nvim/init.vim)
 
+```
 
 # ------------ Testing Area Below ------------
 Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
@@ -56,4 +58,3 @@ printf("Hello world", 123, 12.7, "yeah what")
 printf("Hello world")
 printf("Hello world", 123, 12.7, "yeah what")
 printf("Hello world", 123, 12.7, "yeah what")
-
