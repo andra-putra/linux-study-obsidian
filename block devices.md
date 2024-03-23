@@ -1,0 +1,1 @@
+e.g. HDD, USB drives, CD-ROM drives, etc.

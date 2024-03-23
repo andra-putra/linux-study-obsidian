@@ -69,7 +69,24 @@ Used to manage disk partitions
 - Modify partition tables
 - Delete partition tables
 - etc.
-
 Common command:
 `fdisk -l` Lists partitions 
 
+#### lsblk
+Lists all [[block devices]].
+Used to identify storage devices and details.
+
+#### df (Disk Free)
+Displays disk space used and available on filesystems.
+Used to monitor filesystem usage, identifying storage space problems, etc.
+e.g.
+`df -h` for "human readable" file size (GB, MB, etc.)
+
+#### du (Disk Usage)
+Displays space used by directories or files.
+Used to find files/directories that are hogging up space to be deleted, moved, etc.
+e.g.
+`du -sh` "Summarize" and "Human Readable". Displays disk usage of current directory.
+`du -ah | sort -rn | head -n 10` Finds 10 largest files in this directory
+
+## Displaying Package Space (DPKG and RPM)
