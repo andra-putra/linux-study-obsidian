@@ -90,3 +90,73 @@ e.g.
 `du -ah | sort -rn | head -n 10` Finds 10 largest files in this directory
 
 ## Displaying Package Space (DPKG and RPM)
+Tools like `dpkg` (Debian-based) and `rpm` (RHEL based) used to install, view, check out info about software packages. 
+Other uses:
+- Look at disk space used by installed packages. 
+- Look at info about package dependencies
+	- Check which packages can be removed without breaking other stuff
+- Update or install packages along with dependencies
+
+Examples using [[rpm]]:
+`rpm -i /path/to/file.rpm` --> "Installs" a local `.rpm` package file into the system
+`rpm -qi packagename` --> "Queries" the details of a package installed on the system
+
+## Disk Formatting Commands (mkfs, mk3fs, fdformat, etc.)
+To prep disk for file storage, first need to format it.
+
+#### mkfs (Make Filesystem)
+Tool to make filesystem on storage device (HDD, USB drives, etc.)
+Can make ext2, ext3, ext4, XFS, btrfs, etc. filesystem types.
+Usually when you add a new HDD into a Linux system, you'd first format it using this tool.
+e.g.
+`mkfs.ext4 /dev/sdb1` --> Formats /dev/sdb1 partition with ext4 filesystem. After this, it can be mounted and used
+
+#### mke2fs
+Variant of `mkfs` to make ext2, ext3, and ext4 filesystems.
+#note Find the difference between the different ext types later
+e.g.
+`mke2fs -t ext3 /dev/sdb1` --> Creates ext3 filesystem on /dev/sdb1 partition
+
+#### fdformat (Floppy Disk Format)
+To format floppy disks. Different tool since this is more low-level apparently. 
+Don't use it for USB drives and such.
+
+#### mkswap
+Used to make [[swap area]] on Linux systems.
+Initializes disk partition or file as swap area, then assigns unique identifier.
+e.g. step by step
+1. `lsblk` --> Check available disk partitions
+	1. "Ok, I want to make /dev/sdb1 as SWAP area now."
+2. `mkswap /dev/sdb1` --> Formats partition as swap area
+
+### gdisk
+Used to partition hard drives on Linux systems.
+Designed for the [[GPT partitioning scheme]].
+e.g.
+- `gdisk /dev/sdb` --> Launches the gdisk util for specified disk
+	- `n` --> "New" partition is made
+	- Follow the promps here for different settings, then `w` to "write" changes to disk
+
+## parted
+Partition editor to modify partitions.
+Supports [[GPT partitioning scheme|GPT and MBR]] and can work with different filesystem types.
+Commonly used for servers.
+e.g. want to make new partition on /dev/sdb disk
+1. `parted /dev/sdb` --> Launch parted util on specified disk
+2. `mklabel gpt` --> Makes new GPT partition table on disk (to ensure compatability with modern systems and larger disk sizes)
+3. `mkpart primary ext4 0% 100%` --> Make new primary partition that spans 100% of the disk using ext4 filesystem
+4. `print` --> Verify partition layout and details
+5. `quit` --> Quits parted utility
+
+## dd
+Low-level tool to copy/convert data between files, disks, and partitions.
+Common uses:
+- Making bootable USB drives
+- Backing up and restoring disk images
+- Cloning disks
+- Write zeroes to hard drive (erasing data)
+e.g. Want to copy contents of file to USB device /dev/sdb
+1. `dd if=/home/user/backup.tar.gz of=/dev/sdb bs=4M` --> 
+	1. `if` (input file) is the source file
+	2. `of` (output file) is the target location USB device
+	3. `bs` (block size) of data transfer. #note check out what this means

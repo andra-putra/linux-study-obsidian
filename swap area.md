@@ -1,0 +1,1 @@
+Dedicated space on drive that system can use as virtual memory (RAM) when it runs out of actual physical memory.

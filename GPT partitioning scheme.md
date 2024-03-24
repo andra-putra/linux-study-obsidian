@@ -1,0 +1,1 @@
+A newer partitioning scheme, replaced the older Master Boot Record (MBR).
